@@ -34,7 +34,7 @@ def get_data() -> pd.DataFrame:
     """
     Simulate pendulum data
     """
-    time_steps = 100
+    time_steps = 200
     theta = np.zeros(time_steps)
     omega = np.zeros(time_steps)
     theta[0] = math.pi / 4  # initial angle
@@ -46,7 +46,7 @@ def get_data() -> pd.DataFrame:
 
     data = pd.DataFrame({
         DataColumns.time: np.arange(time_steps) * Constants.dt,
-        DataColumns.theta_observation: theta
+        DataColumns.theta_observation: theta + np.random.normal(loc=0.0, scale=0.1, size=time_steps),
     })
     return data
 
@@ -76,7 +76,7 @@ class ParticleFilter:
         """
         Only updating based on theta as this is the only dimension we measure.
         """
-        self.weights *= np.exp(-0.5 * ((self.particles[StateSpace.theta] - measurement) / 0.2) ** 2)
+        self.weights *= np.exp(-0.5 * ((self.particles[StateSpace.theta] - measurement) / 0.1) ** 2)
         print(np.sum(self.weights))
         self.weights /= np.sum(self.weights)
 
