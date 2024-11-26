@@ -1,4 +1,4 @@
-# A simple particle filter.
+# A basic particle filter implementation
 
 ## Implementation
 
