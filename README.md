@@ -1,15 +1,25 @@
-A simple particle filter.
+# A simple particle filter.
 
-**Implementation**
+## Implementation
 
-theta_t+1 = theta_t + omega_t * dt + noise
+$$
+\theta_{t+1} = \theta_t + \omega_t \Delta t + \text{noise}
+$$
 
-omega_t+1 = [(-g * sin(theta_t)) / L] * dt + noise
+$$
+\omega_{t+1} = \left(\frac{-g \cdot \sin(\theta_t)}{L}\right) \Delta t + \text{noise}
+$$
 
 Note: Not exactly the same implementations as in the project thesis.
 
-**Kalman filter would be**
+## Kalman filter would be
 
-x = [theta, omega]
+$$
+x = \begin{bmatrix} \theta \\ \omega \end{bmatrix}
+$$
 
-x_dot = [[0, 1], [-g / L, 0]] * x
+$$
+\dot{x} = \begin{bmatrix} 0 & 1 \\ -\frac{g}{L} & 0 \end{bmatrix} x
+$$
+
+Note: Matrices above are not displayed properly for some reason.
